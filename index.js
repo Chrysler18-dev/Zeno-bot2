@@ -1,3 +1,10 @@
+process.on("unhandledRejection", (reason) => {
+  console.log("Unhandled Rejection:", reason);
+});
+
+process.on("uncaughtException", (err) => {
+  console.log("Uncaught Exception:", err);
+});
 require("dotenv").config();
 
 const { Client, GatewayIntentBits } = require("discord.js");
@@ -70,3 +77,11 @@ function playSilence() {
 }
 
 client.login(process.env.TOKEN);
+
+function restartBot() {
+  console.log("Restarting bot...");
+
+  setTimeout(() => {
+    process.exit(1);
+  }, 3000);
+}
